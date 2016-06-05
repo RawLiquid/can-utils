@@ -55,7 +55,7 @@ CPPFLAGS += -Iinclude \
 PROGRAMS_ISOTP = isotpdump isotprecv isotpsend isotpsniffer isotptun isotpserver isotpperf
 PROGRAMS_CANGW = cangw
 PROGRAMS_SLCAN = slcan_attach slcand
-PROGRAMS = can-calc-bit-timing candump cansniffer cansend canplayer cangen canbusload\
+PROGRAMS = can-calc-bit-timing candump cansniffer cansummary cansend canplayer cangen canbusload\
 	   log2long log2asc asc2log\
 	   canlogserver bcmserver\
 	   $(PROGRAMS_ISOTP)\
@@ -73,6 +73,10 @@ install:
 	cp -f $(PROGRAMS) $(DESTDIR)$(PREFIX)/bin
 
 distclean:
+	rm -f $(PROGRAMS) *.o *~
+
+uninstall:
+	cd $(DESTDIR)$(PREFIX)/bin
 	rm -f $(PROGRAMS) *.o *~
 
 cansend.o:	lib.h
