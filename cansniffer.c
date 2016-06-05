@@ -601,19 +601,19 @@ void print_snifline(canid_t id){
 	int i,j;
 
 	long data0, data1, data2, data3;
-	if (sniftab[id].current.can_dlc > 1) {
+	if (sniftab[id].current.len > 1) {
 		data0 = sniftab[id].current.data[0]<<8;
 		data0 += (long) sniftab[id].current.data[1];
 	}
-	if (sniftab[id].current.can_dlc > 3) {
+	if (sniftab[id].current.len > 3) {
 		data1 = (long) sniftab[id].current.data[2]<<8;
 		data1 += (long) sniftab[id].current.data[3];
 	}
-	if (sniftab[id].current.can_dlc > 5) {
+	if (sniftab[id].current.len > 5) {
 		data2 = (long) sniftab[id].current.data[4]<<8;
 		data2 += (long) sniftab[id].current.data[5];
 	}
-	if (sniftab[id].current.can_dlc > 7) {
+	if (sniftab[id].current.len > 7) {
 		data3 = (long) sniftab[id].current.data[6]<<8;
 		data3 += (long) sniftab[id].current.data[7];
 	}
@@ -696,19 +696,19 @@ void print_snifline(canid_t id){
 			putchar(' ');
 		/* Add some blank space before putting int16 info*/
 
-		if (sniftab[id].current.can_dlc < 8)
-		for (i=0; i<10-sniftab[id].current.can_dlc; i++) {
+		if (sniftab[id].current.len < 8)
+		for (i=0; i<10-sniftab[id].current.len; i++) {
 			putchar(' ');
 			//printf("%*s", (8 - sniftab[id].current.can_dlc) * 3, "");
 		}
 
-		if (sniftab[id].current.can_dlc > 1)
+		if (sniftab[id].current.len > 1)
 			printf("%6li%s",data0," ");
-		if (sniftab[id].current.can_dlc > 3)
+		if (sniftab[id].current.len > 3)
 			printf("%6li%s",data1," ");
-		if (sniftab[id].current.can_dlc > 5)
+		if (sniftab[id].current.len > 5)
 			printf("%6li%s",data2," ");
-		if (sniftab[id].current.can_dlc > 7)
+		if (sniftab[id].current.len > 7)
 			printf("%6li%s",data3," ");
 
 	}
